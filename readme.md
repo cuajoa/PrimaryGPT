@@ -1,8 +1,14 @@
+![image](images/gdrive.png)
+
+
 # Bienvenido a PrimaryGPT
 
-PrimaryGPT es un chatbot que contiene información acerca de Primary para que le puedas preguntar y te responda.
+PrimaryGPT es un repositorio que posee ejemplos de LLM con LangChain.
 
-Usa LongChain para generar respuestas, la API de OpenAI para FineTunning y la API de Slack para la interfaz.
+Los casos de usos actuales son los siguientes:
+
+- Leer documentos de una carpeta de Google Drive para aprender de la info que posee esa carpeta
+- Conectarse a Confluence y aprender de un espacio en particular
 
 ## Instalación
 
