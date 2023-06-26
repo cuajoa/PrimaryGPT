@@ -36,6 +36,31 @@ Para configurar el proyecto, es necesario crear un archivo `.env` en la raíz de
 Para ello, renombrar el archivo `.env.example` a `.env` y completar los datos.
 
 ## Carpeta de documentos
-Para setear el ID de la carpeta de GDrive se debe obtener desde el browser y copiarla en la variable `folder_id = "ief98ujsk9a5eysy90kytd-t"` del archivo `main.py`
+Para setear el ID de la carpeta de GDrive se debe obtener desde el browser y copiarla en la variable `folder_id = "1qVqm6IBs5DWeytuwCQ95b09GVED5DGLU"` del archivo `main.py`
 
-![image](https://www.haihai.ai/content/images/2023/05/Screenshot-2023-05-26-at-9.32.33-AM.png)
+![image](images/gdrive.png)
+
+
+---
+
+# Recursos
+
+[LangChain Official Site](https://python.langchain.com/docs/get_started)
+
+[8 Minutes LangChain OpenAI Beginner Tutorial | ChatGPT with your PDF](https://youtu.be/FuqdVNB_8c0)
+
+[The LangChain Cookbook - Beginner Guide To 7 Essential Concepts](https://youtu.be/2xxziIWmaSA)
+
+[Augmented Language Models (LLM Bootcamp)](https://youtu.be/YdeuQhlHmCA)
+
+[LLMOps (LLM Bootcamp)](https://youtu.be/Fquj2u7ay40)
+
+## Cursos
+
+[ChatGPT Prompt Engineering for Developers](https://learn.deeplearning.ai/chatgpt-prompt-eng/lesson/1/introduction)
+
+[UDEMY - LangChain- Develop LLM powered applications with LangChain](https://primary.udemy.com/course/langchain/)
+
+## Repositorios útiles
+
+[Awesome LangChain](https://github.com/kyrolabs/awesome-langchain)
