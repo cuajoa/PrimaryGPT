@@ -32,17 +32,8 @@ Para usar la API de Google, es necesario tener un archivo JSON con las credencia
 
 ## Configuración del proyecto
 
-Para configurar el proyecto, es necesario crear un archivo `.env` en la raíz del proyecto con las siguientes variables:
-
-```bash
-OPENAI_API_KEY= 
-Clave de la API de OPEN AI
-
-GOOGLE_APPLICATION_CREDENTIALS=
-Con el path donde se encuentra el archivo credentiasl.json 
-Por defecto: `./credentials/credentials.json`
-
-```
+Para configurar el proyecto, es necesario crear un archivo `.env` en la raíz del proyecto.
+Para ello, renombrar el archivo `.env.example` a `.env` y completar los datos.
 
 ## Carpeta de documentos
 Para setear el ID de la carpeta de GDrive se debe obtener desde el browser y copiarla en la variable `folder_id = "ief98ujsk9a5eysy90kytd-t"` del archivo `main.py`
