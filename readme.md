@@ -1,4 +1,4 @@
-![image](images/gdrive.png)
+![image](images/logo.png)
 
 
 # Bienvenido a PrimaryGPT
