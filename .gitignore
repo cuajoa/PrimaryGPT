@@ -1,8 +1,8 @@
 __pycache__
+.credentials
 .chroma
 .credentials/credentials.json
 .vscode
-pruebas
 scripts/__pycache__
 .env
 package-lock.json

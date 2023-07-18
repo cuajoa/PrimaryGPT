@@ -61,6 +61,8 @@ Para setear el ID de la carpeta de GDrive se debe obtener desde el browser y cop
 
 [LLMOps (LLM Bootcamp)](https://youtu.be/Fquj2u7ay40)
 
+[Chroma User Guide](https://docs.trychroma.com/usage-guide)
+
 ## Cursos
 
 [ChatGPT Prompt Engineering for Developers](https://learn.deeplearning.ai/chatgpt-prompt-eng/lesson/1/introduction)
