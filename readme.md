@@ -28,7 +28,7 @@ Dentro de la carpeta de "Casos de Uso" encontrarán ejemplos de los siguientes c
 Primero, instalar todas las dependencias de LangChain:
 
 ```bash
-pip install langchain[all]
+pip install langchain
 ```
 
 Luego, instalar las dependencias del proyecto.
