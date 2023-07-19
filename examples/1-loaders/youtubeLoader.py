@@ -4,7 +4,7 @@ from langchain.document_loaders.parsers import OpenAIWhisperParser
 from langchain.document_loaders.blob_loaders.youtube_audio import YoutubeAudioLoader
 
 url="https://youtu.be/sHTAYJ_HSkA"
-save_dir="ejemplos/docs/youtube"
+save_dir="examples/docs/youtube"
 loader = GenericLoader(YoutubeAudioLoader([url], save_dir),OpenAIWhisperParser())
 docs = loader.load()
 

@@ -34,7 +34,9 @@ docs = loader.load(
 )
 
 text_splitter = RecursiveCharacterTextSplitter(
-    chunk_size=4000, chunk_overlap=0, separators=[" ", ",", "\n"]
+    chunk_size=4000, 
+    chunk_overlap=0, 
+    separators=["", " ", "\n","\n\n", "(?<=\. )"]
 )
 
 texts = text_splitter.split_documents(docs)
