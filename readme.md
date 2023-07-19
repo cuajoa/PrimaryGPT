@@ -10,6 +10,19 @@ Los casos de usos actuales son los siguientes:
 - Leer documentos de una carpeta de Google Drive para aprender de la info que posee esa carpeta
 - Conectarse a Confluence y aprender de un espacio en particular
 
+## Ejemplos
+Encontrarán ejemplos de los siguientes casos de uso:
+
+- Cómo utilizar distintos Loader de Langchain para cargar documentos 
+- Cómo utilizar los splitter de Langchain para separar documentos en oraciones
+
+### Casos de Uso
+Dentro de la carpeta de "Casos de Uso" encontrarán ejemplos de los siguientes casos de uso:
+- Chatbot que retorna casos de prueba de una funcionalidad que apendió del loader desde Confluence
+- Chatbot que retorna Historias de usuario y Criterios de aceptación de una funcionalidad que apendió del loader desde Confluence
+- Chatbot que que funciona como knowledge base de una funcionalidad que apendió del loader desde gDrive
+  
+
 ## Instalación
 
 Primero, instalar todas las dependencias de LangChain:
