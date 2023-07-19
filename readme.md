@@ -16,6 +16,7 @@ Encontrarán ejemplos de los siguientes casos de uso:
 - Cómo utilizar distintos Loader de Langchain para cargar documentos 
 - Cómo utilizar los splitter de Langchain para separar documentos en oraciones
 - Cómo almacenar los documentos en una base de datos de vectores (ChromaDB)
+- Cómo obtener información de la base de datos de vectores (ChromaDB) y como usar compresores
 
 ### Casos de Uso
 Dentro de la carpeta de "Casos de Uso" encontrarán ejemplos de los siguientes casos de uso:
