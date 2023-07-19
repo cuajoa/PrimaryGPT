@@ -3,9 +3,6 @@
 from langchain.embeddings import OpenAIEmbeddings
 from langchain.vectorstores import Chroma
 from langchain.llms import OpenAI
-from langchain.retrievers.self_query.base import SelfQueryRetriever
-from langchain.chains.query_constructor.base import AttributeInfo
-
 from langchain.retrievers import ContextualCompressionRetriever
 from langchain.retrievers.document_compressors import LLMChainExtractor
 
@@ -17,12 +14,18 @@ sys.path.insert(0, str(_parentdir))
 print(_parentdir)
 
 from scripts.config import Config
+
 cfg = Config()
 
 persist_directory = "examples/docs/chroma"
 
+
 def pretty_print_docs(docs):
-    print(f"\n{'-' * 100}\n".join([f"Document {i+1}:\n\n" + d.page_content for i, d in enumerate(docs)]))
+    print(
+        f"\n{'-' * 100}\n".join(
+            [f"Document {i+1}:\n\n" + d.page_content for i, d in enumerate(docs)]
+        )
+    )
 
 
 embeddings = OpenAIEmbeddings()
