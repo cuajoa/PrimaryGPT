@@ -42,7 +42,7 @@ vectordb = Chroma.from_documents(
 )
 
 question = "como esco fondos resuelve la funcionalidad de alquiler de títulos"
-docs = vectordb.similarity_search(question, k=5)
+docs = vectordb.similarity_search(question, k=2)
 
 vectordb.persist()
 
