@@ -7,7 +7,6 @@ from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain.embeddings import OpenAIEmbeddings
 from langchain.vectorstores import Chroma
 
-import abc
 
 class Singleton(abc.ABCMeta, type):
     """
@@ -26,49 +25,72 @@ class Singleton(abc.ABCMeta, type):
 class AbstractSingleton(abc.ABC, metaclass=Singleton):
     pass
 
+
 cfg = Config()
+
 
 class vectordb(metaclass=Singleton):
     __client = None
-
-    __collection_name = "documentsFondos"
+    __collection_name = None
 
     ### Inicializa la base de datos de vectores
-    def __init__(self) -> None:
-        self.__client = chromadb.Client(
-            Settings(
+    def __init__(self, _collection) -> None:
+        self.__collection_name = _collection
+        
+        self.__client = Chroma(
+            collection_name=self.__collection_name,
+            embedding_function=self.get_embeddings(),
+            client_settings=Settings(
                 chroma_api_impl="rest",
                 chroma_server_host=cfg.chroma_server_host,
                 chroma_server_http_port=cfg.chroma_server_port,
-            )
+            ),
         )
-        # self.__client.reset()  # resets the database
-        self.__client.create_collection(self.__collection_name)
 
-    def addDocuments(self, docs):
-        # text_splitter = RecursiveCharacterTextSplitter(
-        #     chunk_size=4000, chunk_overlap=0, separators=[" ", ",", "\n"]
-        # )
-
-        # texts = text_splitter.split_documents(docs)
-        embeddings = OpenAIEmbeddings()
-        db = Chroma(client=self.__client, collection_name=self.__collection_name)
+    def addDocumentsWithMetadata(self, docs):
+        Chroma(client=self.__client, collection_name=self.__collection_name)
         collection = self.__client.get_collection(self.__collection_name)
-        
+
         for doc in docs:
-            collection.add(ids=[str(uuid.uuid1())], metadatas=doc.metadata, documents=doc.page_content, embeddings=embeddings)
+            collection.add(
+                ids=[str(uuid.uuid1())],
+                metadatas=doc.metadata,
+                documents=doc.page_content,
+                embeddings=self.get_embeddings(),
+            )
 
-        return db.as_retriever()
+    def addFromDocuments(self, _docs):
+        text_splitter = RecursiveCharacterTextSplitter(
+            chunk_size=4000,
+            chunk_overlap=0,
+            separators=["", " ", "\n", "\n\n", "(?<=\. )"],
+        )
 
-    def searchDocument(self, query):
+        texts = text_splitter.split_documents(_docs)
+
+        Chroma.from_documents(
+            documents=texts,
+            embedding=self.get_embeddings(),
+            collection_name=self.__collection_name,
+        )
+
+    def searchDocument(self, query, _k=2):
         # tell LangChain to use our client and collection name
         collection = self.__client.get_collection(self.__collection_name)
-        docs = collection.similarity_search(query)
+        docs = collection.similarity_search(query, k=_k)
         return docs[0].page_content
-    
+
     def get_collection(self):
         return self.__collection_name
-    
+
+    def get_embeddings(self):
+        embeddings = OpenAIEmbeddings()
+        return embeddings
+
+    def get_as_retriever(self):      
+        vectordb = Chroma(client=self.__client, collection_name=self.__collection_name)
+        
+        return vectordb.as_retriever()
 
     # def updateDeleteDocument():
     #     # create simple ids

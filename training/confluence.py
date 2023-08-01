@@ -1,14 +1,11 @@
-from langchain.chat_models import ChatOpenAI
-from langchain.chains import RetrievalQA
 from langchain.document_loaders import ConfluenceLoader
 import pathlib
 import sys
-
 _parentdir = pathlib.Path(__file__).parent.parent.resolve()
 sys.path.insert(0, str(_parentdir))
-
 from scripts.vectordb import vectordb
 from scripts.config import Config
+
 
 cfg = Config()
 
@@ -16,32 +13,12 @@ loader = ConfluenceLoader(
     url=cfg.jira_site, username=cfg.jira_user, api_key=cfg.jira_api_key
 )
 
-# Setear la key del espacio de trabajo de confluence en space_key
-# limit es la cantidad de documentos a cargar consulta que hará loader, no el total de documentos a traer.
 docs = loader.load(
-    space_key="EINV",
+    space_key="VIF",
     include_attachments=False,
     limit=50,
 )
 
-vdb = vectordb()
-retriever = vdb.addDocuments(docs)
-
-# text_splitter = RecursiveCharacterTextSplitter(
-#     chunk_size=4000, chunk_overlap=0, separators=[" ", ",", "\n"]
-# )
-
-# texts = text_splitter.split_documents(docs)
-# embeddings = OpenAIEmbeddings()
-# db = Chroma.from_documents(texts, embeddings)
-# retriever = db.as_retriever()
-
-# llm = ChatOpenAI(temperature=0, model_name="gpt-3.5-turbo-16k")
-# qa = RetrievalQA.from_chain_type(llm=llm, chain_type="stuff", retriever=retriever)
-
-# while True:
-#     print(Fore.WHITE)
-#     query = input("> ")
-#     answer = qa.run(query)
-
-#     print(Fore.GREEN, answer)
+_vectordb = vectordb("fondoscollection")
+_vectordb.__init__("fondoscollection")
+_vectordb.addFromDocuments(docs)
