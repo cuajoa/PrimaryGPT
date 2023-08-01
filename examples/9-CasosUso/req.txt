@@ -1,0 +1,36 @@
+###Introduccion###
+El presente documento tiene como objetivo incorporar un esquema de autorizacion de solicitud para los cuotapartistas configurados como requiere firma conjunta. Sólo se tendra en cuenta ese parametro de configuracion quedando excluidas las combinaciones de tipo de clase, monto importe solicitud y moneda. Las solicitudes se mostraran en estado pendiente por Home y las  mismas deberan contar con la autorizacion o rechazo de al menos 2 personas asociadas al cuotapartista.
+###Circuito###
+Para el esquema se active cada cuenta cuotapartista tendrá que contar con el check Requiere Firma conjunta configurada con valor si o no. El mismo se podra localizar en CUOTAPARTISTA, considerar que un cuotapartista juridico puede requerir firma conjunta.
+Si el cuotapartista configurado requiere firma conjunta o no, cada una de esas personas asociadas deberan contar con un usuario externo para loguearse al aplicativo HOME.
+Una vez que el usuario se loguee a Home tendra la opcion de agregar solicitudes, las mismas entraran a una grilla de pendiente de autorizacion si la configuracion lo requiere, 
+A. Si la cuenta no requiere firma conjunta ingresa la solicitud de forma inmediata y se mostrara como lo hace actualmente.
+B. Si la cuenta requiere firma conjunta 
+Se espera que al menos 2 personas autoricen la solicitud
+Al momento que la persona se loguee a home y comience a operar podra ver las solicitudes que requieran autotizacion en un nuevo punto de menu Pendientes de Autorización.
+Aclaracion: El usuario que ingresa la solicitud sera considerado como primer autorizador y tendrá que esperar que otro usuario confirme la solicitud.
+En caso que se rechace la solicitud se necesitará que el usuario que ingreso la solicitud confirme el rechazo de la solicitud, puesto que por cada accion autorizar o rechazar se quiere al menos 2 confirmaciones o rechazos y cada autorizacion o rechazo de solicitudes sera guardado en un log para registrar auditoria. 
+Si el cliente tiene configurado Requiere Firma conjunta.
+Se tendran en cuenta los siguientes casos:
+
+Caso A
+El usuario externo tiene asociado al Cuotapartista A con configuracion Requiere firma conjunta SI y tiene asociada 1 sola persona.
+El usuario ingresa a HOME y agrega una solicitud, la ventana de home indicara el mensaje solicitud pendiente de autorizacion. 
+El usuario sociedad gerente debera ingresar al cuotapartista y confirgurarlo Requiere firma conjunta NO.
+Caso B
+El usuario externo tiene asociado al Cuotapartista B con configuracion Requiere firma conjunta SI y tiene asociada a las persona B y Persona C
+El usuario esa externo ingresa a HOME y agrega una solicitud, la ventana de home indicara el mensaje solicitud pendiente de autorizacion. 
+Si la persona C o B no tiene creado un usuario externo la sociedad gerente debera crearle uno para que pueda loguearse a HOME y autorizar la solicutud dado que el cuotapartista esta confugurado como Requiere firma conjunta. Por lo tanto se necesitan al menos 2 firmantes
+CASO C
+El usuario externo tiene asociado al Cuotapartista C con configuracion Requiere firma conjunta SI y tiene asociada a las persona C, persona D, persona E
+El usuario esa externo ingresa a HOME y agrega una solicitud, la ventana de home indicara el mensaje solicitud pendiente de autorizacion. 
+Si la persona C o D o E no tiene creado un usuario externo la sociedad gerente debera crearle uno para que pueda loguearse a HOME y autorizar la solicutud dado que el cuotapartista esta confugurado como Requiere firma conjunta. Por lo tanto se necesitan al menos 2 firmantes
+CASO D
+El usuario externo tiene asociado al Cuotapartista D y F con configuracion Requiere firma conjunta SI y tiene asociada a las persona D, persona E, persona F
+El usuario esa externo ingresa a HOME y agrega una solicitud, la ventana de home indicara el mensaje solicitud pendiente de autorizacion. 
+Si la persona D o E o F no tiene creado un usuario externo la sociedad gerente debera crearle uno para que pueda loguearse a HOME y autorizar la solicutud dado que el cuotapartista esta confugurado como Requiere firma conjunta. Por lo tanto se necesitan al menos 2 firmantes
+CASO E
+El usuario externo tiene asociado al Cuotapartista E (configurado con Requiere firma conjunta NO)  y cuotapartista F (configuracion Requiere firma conjunta SI) y ambos tienen asociados las persona E, persona F, persona G
+El usuario externo ingresa a HOME y agrega una solicitud, para la cuenta E la ventana de home no indicara el mensaje solicitud pendiente de autorizacion. 
+El usuario esa externo ingresa a HOME y agrega una solicitud, para la cuenta F la ventana de home indicara el mensaje solicitud pendiente de autorizacion. 
+Si la persona E o F o G no tiene creado un usuario externo la sociedad gerente debera crearle uno para que pueda loguearse a HOME y autorizar la solicutud dado que el cuotapartista esta confugurado como Requiere firma conjunta. Por lo tanto se necesitan al menos 2 firmantes
