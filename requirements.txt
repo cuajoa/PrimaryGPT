@@ -27,3 +27,5 @@ docx2txt
 pdf2image
 yt_dlp
 pydub
+pymssql
+chainlit

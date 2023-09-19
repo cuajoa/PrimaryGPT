@@ -19,24 +19,24 @@ Encontrarán ejemplos de los siguientes casos de uso:
 - Cómo obtener información de la base de datos de vectores (ChromaDB) y como usar compresores
 
 ### Casos de Uso
-Dentro de la carpeta de "Casos de Uso" encontrarán ejemplos de los siguientes casos de uso:
+Dentro de la carpeta de `/examples/9-CasosUso` encontrarán ejemplos de los siguientes casos de uso:
 - Chatbot que retorna casos de prueba de una funcionalidad que apendió del loader desde Confluence
 - Chatbot que retorna Historias de usuario y Criterios de aceptación de una funcionalidad que apendió del loader desde Confluence
 - Chatbot que que funciona como knowledge base de una funcionalidad que apendió del loader desde gDrive
-  
+
+> Encontrarán distintos ejemplos usando Davinci o GPT3-Turbo.
 
 ## Instalación
 
-Primero, instalar todas las dependencias de LangChain:
-
-```bash
-pip install langchain
-```
-
-Luego, instalar las dependencias del proyecto.
+Instalar las dependencias del proyecto.
 
 ```bash
 pip install -r requirements.txt
+```
+
+Ejecutar el siguiente comando para levantar la UI de Chainlit, aún está en pruebas experimentales:
+```bash
+chainlit run main.py -w
 ```
 
 ## Credenciales de Google
@@ -57,7 +57,7 @@ Para configurar el proyecto, es necesario crear un archivo `.env` en la raíz de
 Para ello, renombrar el archivo `.env.example` a `.env` y completar los datos.
 
 ## Carpeta de documentos
-Para setear el ID de la carpeta de GDrive se debe obtener desde el browser y copiarla en la variable `folder_id = "1qVqm6IBs5DWeytuwCQ95b09GVED5DGLU"` del archivo `main.py`
+Para setear el ID de la carpeta de GDrive se debe obtener desde el browser y copiarla en la variable `folder_id = "1qVqm6IBs5DWeytuwCQ95b09GVED5DGLU"` del archivo `/examples/9-CasosUso/GdriveKnowledgeBase.py`
 
 ![image](images/gdrive.png)
 

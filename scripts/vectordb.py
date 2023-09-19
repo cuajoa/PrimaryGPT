@@ -1,3 +1,5 @@
+# Clase que arma la conexión a la base de datos de vectores chromaDB
+
 import abc
 import chromadb
 import uuid
@@ -6,6 +8,7 @@ from scripts.config import Config
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain.embeddings import OpenAIEmbeddings
 from langchain.vectorstores import Chroma
+from langchain.vectorstores.base import VectorStoreRetriever
 
 
 class Singleton(abc.ABCMeta, type):
@@ -36,20 +39,13 @@ class vectordb(metaclass=Singleton):
     ### Inicializa la base de datos de vectores
     def __init__(self, _collection) -> None:
         self.__collection_name = _collection
-        
-        self.__client = Chroma(
-            collection_name=self.__collection_name,
-            embedding_function=self.get_embeddings(),
-            client_settings=Settings(
-                chroma_api_impl="rest",
-                chroma_server_host=cfg.chroma_server_host,
-                chroma_server_http_port=cfg.chroma_server_port,
-            ),
-        )
+        self.__client = chromadb.EphemeralClient()
 
     def addDocumentsWithMetadata(self, docs):
-        Chroma(client=self.__client, collection_name=self.__collection_name)
-        collection = self.__client.get_collection(self.__collection_name)
+        client = chromadb.HttpClient(
+            host=cfg.chroma_server_host, port=cfg.chroma_server_port
+        )
+        collection = client.get_collection(self.__collection_name)
 
         for doc in docs:
             collection.add(
@@ -68,15 +64,31 @@ class vectordb(metaclass=Singleton):
 
         texts = text_splitter.split_documents(_docs)
 
+        client = chromadb.HttpClient(
+            host=cfg.chroma_server_host, port=cfg.chroma_server_port
+        )
+        collection = client.get_collection(self.__collection_name)
+
         Chroma.from_documents(
             documents=texts,
             embedding=self.get_embeddings(),
             collection_name=self.__collection_name,
         )
 
+    def addChunkedDocuments(self, _docs, _embedding):
+        Chroma.from_documents(
+            documents=_docs,
+            embedding=_embedding,
+            collection_name=self.__collection_name,
+        )
+
     def searchDocument(self, query, _k=2):
         # tell LangChain to use our client and collection name
-        collection = self.__client.get_collection(self.__collection_name)
+        client = chromadb.HttpClient(
+            host=cfg.chroma_server_host, port=cfg.chroma_server_port
+        )
+        collection = client.get_collection(self.__collection_name)
+
         docs = collection.similarity_search(query, k=_k)
         return docs[0].page_content
 
@@ -87,10 +99,17 @@ class vectordb(metaclass=Singleton):
         embeddings = OpenAIEmbeddings()
         return embeddings
 
-    def get_as_retriever(self):      
-        vectordb = Chroma(client=self.__client, collection_name=self.__collection_name)
-        
-        return vectordb.as_retriever()
+    def get_as_retriever(self, _collection, _embedding):
+        client = chromadb.HttpClient(
+            host=cfg.chroma_server_host, port=cfg.chroma_server_port
+        )
+        vectordb = Chroma(
+            client=self.__client, collection_name=_collection, embedding=_embedding
+        )
+
+        retriever = VectorStoreRetriever(vectorstore=vectordb)
+
+        return retriever
 
     # def updateDeleteDocument():
     #     # create simple ids

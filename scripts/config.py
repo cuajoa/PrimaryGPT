@@ -1,7 +1,10 @@
+# Clase para levantar la configuracion del archivo .env
+
 import os
 import openai
 from dotenv import load_dotenv
 import abc
+
 
 class Singleton(abc.ABCMeta, type):
     """
@@ -20,8 +23,10 @@ class Singleton(abc.ABCMeta, type):
 class AbstractSingleton(abc.ABC, metaclass=Singleton):
     pass
 
+
 # Load environment variables from .env file
 load_dotenv()
+
 
 class Config(metaclass=Singleton):
     """
@@ -42,6 +47,11 @@ class Config(metaclass=Singleton):
         self.jira_site = os.getenv("JIRA_SITE")
         self.chroma_server_host = os.getenv("CHROMA_SERVER_HOST")
         self.chroma_server_port = os.getenv("CHROMA_SERVER_PORT")
+
+        self.database_username = os.getenv("DATABASE_USERNAME")
+        self.database_password = os.getenv("DATABASE_PASSWORD")
+        self.database_server = os.getenv("DATABASE_SERVER")
+        self.database_db = os.getenv("DATABASE_DB")
 
     def set_openai_api_key(self, value: str):
         """Set the OpenAI API key value."""
@@ -70,3 +80,19 @@ class Config(metaclass=Singleton):
     def set_debug_mode(self, value: bool):
         """Set the debug mode value."""
         self.debug_mode = value
+
+    def set_database_username(self, value: str):
+        """Set the database username value."""
+        self.database_username = value
+
+    def set_database_password(self, value: str):
+        """Set the database password value."""
+        self.database_password = value
+
+    def set_database_server(self, value: str):
+        """Set the database server value."""
+        self.database_server = value
+
+    def set_database_db(self, value: str):
+        """Set the database db value."""
+        self.database_db = value

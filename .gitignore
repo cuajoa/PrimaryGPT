@@ -7,3 +7,6 @@ scripts/__pycache__
 .env
 package-lock.json
 log.txt
+data
+.venv
+.chainlit
